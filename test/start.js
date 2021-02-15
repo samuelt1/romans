@@ -1,10 +1,10 @@
-const chai = require('chai');
-const chaiHttp = require('chai-http');
-const server = require('../src/main/server');
-const should = chai.should();
-const assert = chai.assert;
+import { should as _should, assert as _assert, use } from 'chai';
+import chaiHttp from 'chai-http';
+import server from '../src/main/server';
+const should = _should();
+const assert = _assert;
 
-chai.use(chaiHttp);
+use(chaiHttp);
 
 /*=============================================*/
 /*================== [PING] ===================*/
