@@ -1,13 +1,33 @@
 const BadRequest = require('../core/error/bad-request')
+const NestedError = require('../core/error/nested-error')
+const roman = require('./roman')
+
 async function numToRom(req, res, next) {
     try {
-        // Error handing
+        const input = +req.query.query
 
-        throw new BadRequest('no number')
-        console.log(req.params.number)
-        res.send('hi')
+        // input is a number
+        if (isNaN(input)) {
+            throw new BadRequest('Please insert a number into the query parameter \'query\'')
+        }
+
+        // input is between 1-255
+        if (input < 1 || input > 255) {
+            throw new BadRequest('Please insert a number between 1-255')
+        }
+
+        // call the function
+        const output = await roman.numToRom(input)
+
+        // return JSON
+        res.json({
+            input,
+            output
+        })
     } catch (error) {
-        console.log(error)
+        // If the error is a normal Error, then copy it to a better error
+        if (error instanceof Error)
+            error = new NestedError(error)
         next(error)
     }
 }
