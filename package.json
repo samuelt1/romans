@@ -4,8 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "NODE_ENV=development nodemon start --color=true",
+    "qa": "NODE_ENV=qa nodemon start --color=true",
+    "production": "NODE_ENV=production npm start --color=true",
+    "docker": "NODE_ENV=docker node src/index.js",
+    "test": "mocha test/* --exit --timeout 10000",
+    "trace-test": "loglevel=trace mocha test/* --timeout 10000",
+    "progressive-test": "mocha test/progressive --timeout 10000",
+    "code-coverage": "nyc mocha test/* --timeout 10000"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Samuel Thompson",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.3.0",
+    "chai-http": "^4.3.0",
+    "mocha": "^8.3.0",
+    "nyc": "^15.1.0",
+    "winston": "^3.3.3"
+  }
 }
