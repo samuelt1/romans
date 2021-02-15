@@ -2,7 +2,7 @@ const BadRequest = require('../core/error/bad-request')
 const NestedError = require('../core/error/nested-error')
 const roman = require('./roman')
 
-async function numToRom(req, res, next) {
+function numToRom(req, res, next) {
     try {
         const input = +req.query.query
 
@@ -17,7 +17,7 @@ async function numToRom(req, res, next) {
         }
 
         // call the function
-        const output = await roman.numToRom(input)
+        const output = roman.numToRom(input)
 
         // return JSON
         res.json({

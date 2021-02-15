@@ -1,10 +1,12 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const serverRoutes = require('./routes')
-const winston = require('winston')
 const config = require('config');
+const cors = require('cors')
+const logger = require('./core/logger')
 
 const app = express()
+
 configure()
 runServer()
 
@@ -19,14 +21,14 @@ function configure() {
     })
     app.use((err, req, res, next) => {
         // Handle any errors that got thrown
-        res.status(err.status || 500)
-        if (process.env.NODE_ENV == 'dev') {
+        res.status(err.statusCode || 500)
+        if (process.env.NODE_ENV == 'dev' || process.env.NODE_ENV == 'test') {
             // If we are in Dev send the full error to the front
-            winston.warning(err)
+            logger.warn(err)
             res.json(err)
         } else {
             // Dont show the user the error, but still send it to our logger
-            winston.warning(err)
+            logger.warn(err)
             res.send('Well this is embarassing! Something went wrong. Contact support at NotMy@Problem.com')
         }
     })
@@ -47,4 +49,8 @@ function initExpress() {
     app.use(bodyParser.urlencoded({
         extended: true
     }))
+    // Enable Cors
+    app.use(cors());
 }
+
+module.exports = app
