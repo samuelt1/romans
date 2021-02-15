@@ -6,7 +6,7 @@ async function numToRom(number) {
     for (i in romans) {
         while (number >= romans[i]) {
             output += i;
-            numer -= romans[i];
+            number -= romans[i];
         }
     }
     return output;
