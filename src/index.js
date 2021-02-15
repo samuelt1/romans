@@ -4,6 +4,7 @@ const serverRoutes = require('./routes')
 const winston = require('winston')
 const pjson = require('../package.json')
 const config = require('config');
+const nodemon = require('nodemon')
 
 const app = express()
 configure()
@@ -19,8 +20,13 @@ function configure() {
     })
     app.use((err, req, res, next) => {
         res.status(err.status || 500)
-        winston.error(err)
-        res.send('Well this is embarassing! Something went wrong. Contact support at NotMy@Problem.com')
+        if (process.env.NODE_ENV == 'dev') {
+            err.stack
+            res.json(err)
+        } else {
+            winston.error(err)
+            res.send('Well this is embarassing! Something went wrong. Contact support at NotMy@Problem.com')
+        }
     })
 }
 
