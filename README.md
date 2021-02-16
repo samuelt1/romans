@@ -81,11 +81,15 @@ but according to this [guy](https://www.quora.com/How-is-a-billion-represented-i
 
 ## Methodology <a name="Methodology"></a>
 
-I laid out the code in a way that is best expandable. The server starts with index.js, and then follows the routes for deeper apis. The URL follows the folders this way it is very easy to know where stuff is inside of your application. All routes (there is only one here) should have a swagger doc attached to it, this gives a nice way for people to see what the API should be doing and how to use it. I did not add a beautifier, but I think one should be added to get rid of semi-colons automatically and format the code. I added CORS because that usually bites me in the butt after the application is built. For testing I tried to get 100% code completion, but because of the way that I built error handleing I could not force an error to occour without more research. I made end to end tests that show how the user would see things happen. The unit tests I made cover as many cases as I could think of. I made the only error in the roman.js file later to throw just so I could have an error to throw there. I made a special error class. The error class is so that all errors will be handled specially. 
+I laid out the code in a way that is best expandable. The server starts with index.js, and then follows the routes for deeper apis. The URL follows the folders this way it is very easy to know where stuff is inside of your application. All routes (there is only one here) should have a swagger doc attached to it, this gives a nice way for people to see what the API should be doing and how to use it. I did not add a beautifier, but I think one should be added to get rid of semi-colons automatically and format the code. I added CORS because that usually bites me in the butt after the application is built. For testing I tried to get 100% code completion, but because of the way that I built error handleing I could not force an error to occour without more research. I made end to end tests that show how the user would see things happen. The unit tests I made cover as many cases as I could think of. I made the only error in the roman.js file later to throw just so I could have an error to throw there. I made a special error class. The error class is so that all errors will be handled specially. This allows the stack trace to be better handled by winston, and show up better in the web browser when throwing it to the user. 
 
 ## Layout <a name="Layout"></a>
 
-All 
+All central files to the project should be stored in the core folder. If there is any code related to a route it should be stored inside of the route. routes should follow the naming convention of the route.
+
+The test folder should be split by the end to end tests, and the unit tests. Every route should be split into a new file with the correct name
+
+
 
 ## Dependency Graph <a name="Dependency"></a>
 

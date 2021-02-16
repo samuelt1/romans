@@ -1,5 +1,5 @@
 const express = require('express')
-const romanRoutes = require('./romans/routes')
+const romanRoutes = require('./romannumeral/routes')
 const router = express.Router()
 
 router.use('/romannumeral', romanRoutes)

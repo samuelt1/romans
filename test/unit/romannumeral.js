@@ -1,12 +1,12 @@
 
 const chai = require('chai')
-const roman = require('../../src/romans/roman')
+const roman = require('../../src/romannumeral/romannumeral')
 chai.should()
 
 /*=============================================*/
 /*================== [End to End] ===================*/
 /*=============================================*/
-describe('roman:', () => {
+describe('romannumeral:', () => {
     describe('numToRom:', () => {
         /*---------------------------------------------*/
         /*-------------- [ERROR TESTING] --------------*/
