@@ -4,7 +4,20 @@ const serverRoutes = require('./routes')
 const config = require('config')
 const cors = require('cors')
 const logger = require('./core/logger')
-
+const tracer = require('dd-trace').init({
+    analytics: true,
+    profiling: true,
+})
+connect_datadog = require('connect-datadog')({
+    response_code: true,
+    protocol: true,
+    method: true,
+    tags: [
+        'team:extreme',
+        `name:${config.serverName}`,
+        `env:${process.env.NODE_ENV}`,
+    ]
+});
 const app = express()
 
 configure()
@@ -56,8 +69,10 @@ function initExpress() {
     app.use(bodyParser.urlencoded({
         extended: true
     }))
+
     // Enable Cors
     app.use(cors())
+
     // Swagger setup
     const swaggerUi = require('swagger-ui-express')
     const swaggerJSDoc = require('swagger-jsdoc')
@@ -76,6 +91,9 @@ function initExpress() {
     const swaggerSpec = swaggerJSDoc(options)
     const swaggerdocurl = '/docs'
     app.use(swaggerdocurl, swaggerUi.serve, swaggerUi.setup(swaggerSpec))
+
+    // datadog
+    app.use(connect_datadog)
 }
 
 module.exports = app

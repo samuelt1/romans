@@ -1,4 +1,8 @@
 {
     "port": 80,
-    "loglevel": "warn"
+    "loglevel": "debug",
+    "serverName": "prod",
+    "splunktoken": "123",
+    "splunkurl": "123",
+    "splunkloglevel": "warn"
 }

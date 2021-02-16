@@ -89,7 +89,11 @@ All central files to the project should be stored in the core folder. If there i
 
 The test folder should be split by the end to end tests, and the unit tests. Every route should be split into a new file with the correct name
 
+## Notes <a name="Notes"></a>
 
+There will need to be a few changes depending on how it is deployed into production. I belive it will work with kubernetes with a simple config map, but I have no way of testing that easily.
+
+Metrics can be gathered through data dog pretty simply. Just adding the dd-trace and connect-datadog is enough to send all many metrics to data dog like response time. Some metrics I would create is number of successful queries to failed queries in a 10 minute window. This will let me know if there is a bug breaking something. Number of failures with the specific name of the failures. This will catch if one type of error is occuring at any time. Track the CPU, memory, number of processes in case the load gets too high at any time. I would make a metric of number of requests in the 10 minute windows to check for possible DDOS attacks, but this could also be handled very well by Cloudflare. I would track network connections to make sure we are properly closing all connections after use.
 
 ## Dependency Graph <a name="Dependency"></a>
 

@@ -1,4 +1,8 @@
 {
     "port": 8080,
-    "loglevel": "trace"
+    "loglevel": "trace",
+    "serverName": "dev",
+    "splunktoken": "123",
+    "splunkurl": "123",
+    "splunkloglevel": "123"
 }
