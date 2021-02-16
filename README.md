@@ -11,8 +11,9 @@ Friends, countrymen, Romans!
 - [Docs](#Docs)
 - [Sources](#Sources)
 - [Methodology](#Methodology)
-- [Dependency Graph](#Dependency)
 - [Layout](#Layout)
+- [Notes](#Notes)
+- [Dependency Graph](#Dependency)
 
 
 ## Installing NodeJS <a name="Installation"></a>
