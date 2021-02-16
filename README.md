@@ -97,6 +97,7 @@ Metrics can be gathered through data dog pretty simply. Just adding the dd-trace
 
 ## Dependency Graph <a name="Dependency"></a>
 
+```
 romans@1.0.0 /Users/samuel_thompson/projects/romans
 ├─┬ chai@4.3.0
 │ ├── assertion-error@1.1.0
@@ -505,3 +506,4 @@ romans@1.0.0 /Users/samuel_thompson/projects/romans
 │ ├─┬ foreground-child@2.0.0
 │ │ ├─┬ cross-spawn@7.0.3
 │ │ │ ├── path-key@3.1.1
+```
