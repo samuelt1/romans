@@ -1,6 +1,6 @@
-const express = require('express');
+const express = require('express')
 const romanRoutes = require('./roman.controller')
-const router = express.Router();
+const router = express.Router()
 
 
 /**
@@ -33,6 +33,6 @@ const router = express.Router();
  *       500:
  *         description: Failed on the server
  */
-router.get('/', romanRoutes.numToRom);
+router.get('/', romanRoutes.numToRom)
 
-module.exports = router;
+module.exports = router

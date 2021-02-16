@@ -9,12 +9,12 @@ function numToRom(number) {
     for (i in romans) {
         while (number >= romans[i]) {
             // Add the character to the accumulator
-            accumulator += i;
+            accumulator += i
             // Subtract the value of the character from the number getting converted
-            number -= romans[i];
+            number -= romans[i]
         }
     }
-    return accumulator;
+    return accumulator
 }
 
 module.exports = { numToRom }

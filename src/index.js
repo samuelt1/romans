@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const serverRoutes = require('./routes')
-const config = require('config');
+const config = require('config')
 const cors = require('cors')
 const logger = require('./core/logger')
 
@@ -9,6 +9,12 @@ const app = express()
 
 configure()
 runServer()
+
+if (process.env.NODE_ENV == 'prod') {
+    process.on('uncaughtException', function (err) {
+        logger.fatal(`uncaughtException: '${err.message}'.`, err);
+    });
+}
 
 function configure() {
     initExpress()
@@ -39,7 +45,7 @@ function runServer() {
     // We set the listener to close it during the tests
     app.listener = app.listen(config.port, () => {
         console.log(`Express server listening on port http://localhost:${config.port}`)
-    });
+    })
 }
 
 function initExpress() {
@@ -51,10 +57,10 @@ function initExpress() {
         extended: true
     }))
     // Enable Cors
-    app.use(cors());
+    app.use(cors())
     // Swagger setup
-    const swaggerUi = require('swagger-ui-express');
-    const swaggerJSDoc = require('swagger-jsdoc');
+    const swaggerUi = require('swagger-ui-express')
+    const swaggerJSDoc = require('swagger-jsdoc')
 
     var options = {
         swaggerDefinition: {
@@ -65,11 +71,11 @@ function initExpress() {
             host: `localhost:8080`
         },
         apis: [`**/routes.js`] // Path to the API docs
-    };
+    }
 
-    const swaggerSpec = swaggerJSDoc(options);
-    const swaggerdocurl = '/docs';
-    app.use(swaggerdocurl, swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+    const swaggerSpec = swaggerJSDoc(options)
+    const swaggerdocurl = '/docs'
+    app.use(swaggerdocurl, swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 }
 
 module.exports = app
