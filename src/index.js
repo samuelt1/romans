@@ -36,7 +36,8 @@ function configure() {
 
 function runServer() {
     // Actually start the thing
-    app.listen(config.port, () => {
+    // We set the listener to close it during the tests
+    app.listener = app.listen(config.port, () => {
         console.log(`Express server listening on port http://localhost:${config.port}`)
     });
 }
