@@ -52,6 +52,24 @@ function initExpress() {
     }))
     // Enable Cors
     app.use(cors());
+    // Swagger setup
+    const swaggerUi = require('swagger-ui-express');
+    const swaggerJSDoc = require('swagger-jsdoc');
+
+    var options = {
+        swaggerDefinition: {
+            info: {
+                title: 'Romans', // Title (required)
+                version: '1.0.0' // Version (required)
+            },
+            host: `localhost:8080`
+        },
+        apis: [`**/routes.js`] // Path to the API docs
+    };
+
+    const swaggerSpec = swaggerJSDoc(options);
+    const swaggerdocurl = '/docs';
+    app.use(swaggerdocurl, swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 }
 
 module.exports = app
