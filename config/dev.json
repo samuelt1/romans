@@ -4,5 +4,8 @@
     "serverName": "dev",
     "splunktoken": "123",
     "splunkurl": "123",
-    "splunkloglevel": "123"
+    "splunkloglevel": "123",
+    "managerEmail": "john@gmail.com",
+    "emailUser": "emailUser",
+    "emailPass": "emailPass"
 }

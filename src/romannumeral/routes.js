@@ -2,7 +2,6 @@ const express = require('express')
 const romanRoutes = require('./romannumeral.controller')
 const router = express.Router()
 
-
 /**
  * @swagger
  * /romannumeral:
@@ -11,9 +10,9 @@ const router = express.Router()
  *     produces:
  *       - application/json
  *     parameters:
- *       - name: query 
+ *       - name: query
  *         description: The integer to convert
- *         in: query 
+ *         in: query
  *         required: true
  *         type: integer
  *     responses:
