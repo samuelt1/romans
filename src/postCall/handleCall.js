@@ -24,7 +24,7 @@ async function vipCalled (call) {
     '@type': 'MessageCard',
     '@context': 'http://schema.org/extensions',
     themeColor: '444444',
-    summ123ary: 'A VIP call completed',
+    summary: 'A VIP call completed',
     sections: [{
       activityTitle: 'A VIP has called',
       // We only need the time if the time is actually like the start time or something like that

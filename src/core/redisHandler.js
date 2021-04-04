@@ -5,13 +5,12 @@ const redisClient = redis.createClient({
   host: config.get('redisHost'),
 })
 
-function addVIPCallToList (call) {
-  throw new Error('hi')
-//   return redisClient.sadd('vip', JSON.stringify(call))
+module.exports = {
+  addVIPCallToList (call) {
+    return redisClient.sadd('vip', JSON.stringify(call))
+  },
+  getVIPCallList () {
+    return redisClient.smembers('vip')
+  },
+  redisClient,
 }
-
-function getVIPCallList () {
-  return redisClient.smembers('vip')
-}
-
-module.exports = { addVIPCallToList, getVIPCallList, redisClient }
