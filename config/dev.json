@@ -7,5 +7,7 @@
     "splunkloglevel": "123",
     "managerEmail": "john@gmail.com",
     "emailUser": "emailUser",
-    "emailPass": "emailPass"
+    "emailPass": "emailPass",
+    "redisHost": "redis",
+    "teamsConnector": "https://dynatallc.webhook.office.com/webhookb2/8152739a-371e-48f3-9e41-fbe90a00c01e@f0ff917d-ab8c-4129-b13f-33be267a153b/IncomingWebhook/681cb47185264715bea427cc7f1f3eb5/5bd377ca-1c6e-4b6f-b2b6-1129f352c96d"
 }

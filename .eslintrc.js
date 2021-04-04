@@ -7,15 +7,18 @@ module.exports = {
     'standard',
     'plugin:mocha/recommended',
   ],
-  plugins: ['mocha'],
+  plugins: ['mocha', 'no-autofix'],
   parserOptions: {
     ecmaVersion: 12,
     sourceType: 'module',
   },
   rules: {
-    eqeqeq: 0,
+    eqeqeq: 'off',
     semi: ['error', 'never'],
     'comma-dangle': ['error', 'always-multiline'],
-    'no-ex-assign': 0,
+    'no-ex-assign': 'off',
+    'no-unused-expressions': 'warn',
+    'no-unused-vars': 'warn',
+    'no-unreachable': 'warn',
   },
 }

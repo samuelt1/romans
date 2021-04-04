@@ -15,14 +15,16 @@
   "author": "Samuel Thompson",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
     "config": "^3.3.3",
     "connect-datadog": "0.0.9",
     "cors": "^2.8.5",
-    "dd-trace": "^0.31.0",
     "eslint-plugin-chai-friendly": "^0.6.0",
     "eslint-plugin-mocha": "^8.1.0",
     "express": "^4.17.1",
     "nodemailer": "^6.5.0",
+    "nodemailer-express-handlebars": "^4.0.0",
+    "redis": "^3.1.0",
     "swagger-jsdoc": "^6.0.6",
     "swagger-ui-express": "^4.1.6",
     "winston": "^3.3.3"

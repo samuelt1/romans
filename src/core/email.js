@@ -1,6 +1,9 @@
 const config = require('config')
 const nodemailer = require('nodemailer')
-const defaultTransport = nodemailer.createTransport({
+const hbs = require('nodemailer-express-handlebars')
+const path = require('path')
+
+const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
   port: 587,
   secure: false,
@@ -10,18 +13,26 @@ const defaultTransport = nodemailer.createTransport({
     pass: config.emailPass,
   },
 })
-
-function sendEmail (to, subject, text) {
+// attach the plugin to the nodemailer transporter
+transporter.use('compile', hbs({
+  extName: '.hbs',
+  viewPath: path.join(__dirname, '/views/email/'),
+  // layoutsDir: __dirname.join('/view/email'),
+  // defaultLayout: 'template',
+  // partialsDir: __dirname.join('/views/email/partials/'),
+}))
+function sendEmail (to, subject, template, context) {
   return new Promise((resolve, reject) => {
-    defaultTransport.sendMail({
-      to: to,
-      subject: subject,
-      text: text,
+    transporter.sendMail({
+      to,
+      subject,
+      template,
+      context,
     }, (err, responseStatus) => {
       if (err) {
         return reject(err)
       }
-      return resolve(responseStatus.message)
+      return resolve(responseStatus)
     })
   })
 }

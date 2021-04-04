@@ -1,10 +1,10 @@
 const NestedError = require('../core/error/nested-error')
 const handleCall = require('./handleCall')
 
-function postCall (req, res, next) {
+async function postCall (req, res, next) {
   try {
     // call the function
-    handleCall.handleCall(req.body)
+    await handleCall.handleCall(req.body)
 
     // return JSON
     res.sendStatus(201)
