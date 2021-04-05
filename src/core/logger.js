@@ -9,15 +9,19 @@ const config = require('config')
 // }
 
 module.exports = winston.createLogger({
-  level: config.loglevel,
-  format: winston.format.json(),
+  level: config.get('loglevel'),
+  format: winston.format.combine(
+    winston.format.errors({ stack: true }),
+    winston.format.json(),
+  ),
   transports: [
     new winston.transports.Console({
       name: 'consoleLogger',
       colorize: true,
       timestamp: true,
+      json: true,
     }),
-    // Uncomment this when actually connected to datadog
-    // new winston.transports.Http(httpTransportOptions),
+  // Uncomment this when actually connected to datadog
+  // new winston.transports.Http(httpTransportOptions),
   ],
 })

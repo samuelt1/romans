@@ -7,7 +7,7 @@ services:
     ports:
       - "8080:8080"
     environment: 
-      - NODE_ENV=dev
+      - NODE_ENV=docker
     depends_on:
       - redis
   redis:
@@ -24,5 +24,15 @@ services:
     ports:
       - "8080:8080"
     hostname: localhost
-    container_name: watch
     command: npm run start
+  timed:
+    image: node:alpine
+    volumes:
+      - ./:/app:cached
+    working_dir: /app
+    environment: 
+      - NODE_ENV=docker
+    depends_on:
+      - redis
+    hostname: localhost
+    command: npm run watchCheckVipCalls

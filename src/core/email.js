@@ -15,10 +15,19 @@ const transporter = nodemailer.createTransport({
 })
 // attach the plugin to the nodemailer transporter
 transporter.use('compile', hbs({
+
+  // viewEngine: {
+  //   partialsDir: __dirname + '/views/partials',
+  //   layoutsDir: __dirname + '/views/layouts',
+  //   extname: '.hbs',
+  // },
   extName: '.hbs',
+  // viewPath: 'views',
   viewPath: path.join(__dirname, '/views/email/'),
-  // layoutsDir: __dirname.join('/view/email'),
-  // defaultLayout: 'template',
+  viewEngine: {
+    layoutsDir: path.join(__dirname, '/views/layouts/'),
+    defaultLayout: 'main.hbs',
+  },
   // partialsDir: __dirname.join('/views/email/partials/'),
 }))
 function sendEmail (to, subject, template, context) {

@@ -10,7 +10,9 @@
     "docker": "NODE_ENV=docker node src/index.js",
     "test": "NODE_ENV=test mocha test/* --exit --timeout 10000",
     "ctest": "nodemon --exec npm run test",
-    "cc": "NODE_ENV=test nyc mocha test/* --timeout 10000"
+    "cc": "NODE_ENV=test nyc mocha test/* --timeout 10000",
+    "startCheckVipCalls": "node timed/checkCalls/checkCalls.js",
+    "watchCheckVipCalls": "nodemon --exec npm run startCheckVipCalls"
   },
   "author": "Samuel Thompson",
   "license": "ISC",
