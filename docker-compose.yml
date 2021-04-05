@@ -2,8 +2,8 @@ version: "3.9"
 services:
   web:
     build: .
-    volumes:
-      - ./:/app:cached
+    # volumes:
+    #   - ./:/app:cached
     ports:
       - "8080:8080"
     environment: 
@@ -23,9 +23,8 @@ services:
       - redis
     ports:
       - "8080:8080"
-    hostname: localhost
     command: npm run start
-  timed:
+  timedWatch:
     image: node:alpine
     volumes:
       - ./:/app:cached
@@ -34,5 +33,13 @@ services:
       - NODE_ENV=secret
     depends_on:
       - redis
-    hostname: localhost
     command: npm run watchCheckVipCalls
+  timed:
+    build: 
+      context: .
+      dockerfile: checkCalls.dockerfile
+    environment: 
+      - NODE_ENV=secret
+    depends_on:
+      - redis
+    command: npm run startCheckVipCalls

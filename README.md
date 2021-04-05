@@ -2,6 +2,7 @@
 Friends, countrymen, Romans!
 
 #### Table of Contents
+- [VIP call connector](#VIP)
 - [Installing NodeJS](#Installation)
   - [Windows](#InstallWindows)
   - [Mac](#InstallMacLinux)
@@ -16,6 +17,42 @@ Friends, countrymen, Romans!
 - [Dependency Graph](#Dependency)
 
 
+## VIP call connector <a name="VIP"></a>
+Run `docker-compose up web`
+
+send a request
+```
+curl --location --request POST 'localhost:8080/postCall' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "callId" : "<String>",
+    "timestamp" : "<Datetime as String>",
+    "duration" : {
+        "value" : "<Long>",
+        "unit" : ["MILLISECONDS", "SECONDS", "MINUTES"]
+    },
+    "waitingTime": {
+        "value" : "<Long>",
+        "unit" : ["MILLISECONDS", "SECONDS", "MINUTES"]
+    },
+    "agentData" : {
+        "agentId" : "<String>",
+        "agentName" : "<String>",
+        "agentEmail" : "<String>"
+    },
+    "callData" : {
+        "callerNumber" : "<String>",
+        "ccNumber" : "<String>",
+        "direction" : ["INBOUND", "OUTBOUND"]
+    },
+    "customerStatus" : "VIP"
+}
+'
+```
+
+Then run `docker-compose up timed` to send an email
+
+you will need a secrets config with secret configuration
 ## Installing NodeJS <a name="Installation"></a>
 Install the latest stable version of NodeJS. 
 #### Windows <a name="InstallWindows"></a>
