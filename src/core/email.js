@@ -25,14 +25,14 @@ const transporter = nodemailer.createTransport({
 //   },
 // }))
 
-async function sendEmail (to, subject, template, context) {
+async function sendEmail (to, subject, data) {
   const html = await new Promise((resolve, reject) => {
     fs.readFile(path.join(__dirname, '/views/email/vip.hbs'), 'utf-8', function (error, source) {
       if (error) {
         throw reject(error)
       }
       const template = handlebars.compile(source)
-      const compiled = template(context)
+      const compiled = template(data)
       resolve(compiled)
     })
   })

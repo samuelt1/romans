@@ -27,5 +27,16 @@ module.exports = {
       })
     })
   },
+  deleteKey (key) {
+    return new Promise((resolve, reject) => {
+      redisClient.del(key, (err, response) => {
+        if (err) {
+          reject(err)
+        } else {
+          resolve(response)
+        }
+      })
+    })
+  },
   redisClient,
 }

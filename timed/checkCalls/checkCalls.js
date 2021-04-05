@@ -1,4 +1,4 @@
-const { getVIPCallList } = require('../../src/core/redisHandler')
+const { getVIPCallList, deleteKey } = require('../../src/core/redisHandler')
 const { sendEmail } = require('../../src/core/email')
 const logger = require('../../src/core/logger')
 const config = require('config')
@@ -17,9 +17,9 @@ async function start () {
     await sendEmail(
       config.get('managerEmail'),
       'Vip  contact report',
-      'vip',
       parsedArrayOfCalls,
     )
+    await deleteKey('vip')
   } catch (error) {
     logger.error(error)
     process.exit(1)
