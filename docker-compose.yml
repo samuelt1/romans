@@ -31,7 +31,7 @@ services:
       - ./:/app:cached
     working_dir: /app
     environment: 
-      - NODE_ENV=docker
+      - NODE_ENV=secret
     depends_on:
       - redis
     hostname: localhost
